@@ -1,4 +1,6 @@
 /*jshint esversion: 8 */
+console.log('MONGO_URL from env =', process.env.MONGO_URL);
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
