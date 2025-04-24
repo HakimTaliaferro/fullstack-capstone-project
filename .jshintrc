@@ -1,4 +1,9 @@
 {
   "esversion": 8,
-  "node": true
-}
+  "node": true,
+  "globals": {
+    "require": true,
+    "module": true,
+    "process": true
+  }
+}git add .jshintrc
