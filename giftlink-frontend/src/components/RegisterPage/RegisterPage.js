@@ -11,10 +11,46 @@ function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleRegister = async () => {
-        console.log("Register invoked")
-    }
+  
+    const [showerr, setShowerr] = useState('');
 
+    const navigate = useNavigate();
+    const { setIsLoggedIn } = useAppContext();
+
+    const handleRegister = async () => {
+        try {
+          const response = await fetch(`${urlConfig.backendUrl}/api/auth/register`, {
+            // Task 6: Set POST method
+            method: 'POST',
+    
+            // Task 7: Set headers
+            headers: {
+              'Content-Type': 'application/json',
+            },
+    
+            // Task 8: Set body to send user details
+            body: JSON.stringify({
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              password: password,
+            }),
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            setIsLoggedIn(true);
+            navigate('/app'); // Navigate to main app page
+          } else {
+            setShowerr(data.message || 'Registration failed');
+          }
+        } catch (e) {
+          console.log('Error fetching details: ' + e.message);
+          setShowerr('Server error. Please try again.');
+        }
+      };
+        
 return (
     <div className="container mt-5">
         <div className="row justify-content-center">
