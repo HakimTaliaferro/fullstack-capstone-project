@@ -6,12 +6,12 @@ const connectToDatabase = require('../models/db');
 const router = express.Router();
 const dotenv = require('dotenv');
 const pino = require('pino');  // Import Pino logger
-dotenv.config();
 
 const logger = pino();  // Create a Pino logger instance
 
 //Create JWT secret
 dotenv.config();
+
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/register', async (req, res) => {
