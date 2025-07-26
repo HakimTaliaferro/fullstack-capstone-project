@@ -1,7 +1,8 @@
 /*jshint esversion: 8 */
+require('dotenv').config();
 console.log('MONGO_URL from env =', process.env.MONGO_URL);
 
-require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const pinoLogger = require('./logger');
@@ -11,7 +12,7 @@ const {loadData} = require("./util/import-mongo/index");
 
 
 const app = express();
-app.use("*",cors());
+app.use(cors());
 const port = 3060;
 
 // Connect to MongoDB; we just do this one time
